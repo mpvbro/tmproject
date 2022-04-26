@@ -80,5 +80,5 @@ if selected == "Техническая заявка":
 		st.dataframe(df)
 
 if selected == "Ввод результатов":
-	st.title(f"You have selected {selected}")
+	st.title(f"{selected}")
 
