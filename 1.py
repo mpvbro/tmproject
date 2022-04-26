@@ -4,8 +4,7 @@ from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title="123", page_icon=":cyclone:", layout="wide")
 
-#sheet_url = "https://docs.google.com/spreadsheets/d/1gfD-SvYpoSDvQKfcsbe6u5o1kKgq3oqcgnkiFKVp14E/edit?resourcekey#gid=1266949594"
-#url = sheet_url.replace('/edit?resourcekey#gid=', '/export?format=csv&gid=')
+# ---- PASSWORD AUTHENTICATION FOR TECHNICAL APPLICATION ----
 
 def check_password():
     """Returns `True` if the user had the correct password."""
@@ -47,50 +46,37 @@ with st.sidebar:
 
 
 
-
-
-# ---- HEADER SECTION ----
-
-
-# ---- Sidebar ----
-
-
 # ---- FORM ----
 if selected == "Заявка участника":
-	with st.form("tehz"):
-		st.write("ЗАЯВКА УЧАСТНИКА")
-		st.text_input("Номер участника")
-		st.text_input("Фамилия, имя")
-		st.selectbox("Год рождения", [
-			'2000','2001','2002','2003','2004','2005',
-			'2006','2007','2008','2009','2010',
-			'2011','2012','2013','2014','2015',
-			'2016','2017','2018','2019','2020'])
-		st.text_input("Спортивная организация")
-		st.selectbox("Разряд", [
-			'Без разряда','КМС','1','2','3','1юн','2юн','3юн'])
-		st.multiselect("Дисциплины",[
-			'100м','200м','300м','400м','800м','1500м','3000м',
-			'5000м','100 с барьерами','110 с барьерами','400 с барьерами',
-			'Прыжки в длину','3-ой прыжок с разбега','Толкание ядра',
-			'Метание копья','Эстафета 4 по 100','Эстафета 4 по 400'])
-		st.text_input("Заявленный результат")
-		st.text_input("Тренер(ы)")
-		st.form_submit_button("Отправить")
+	st.title(f"{selected}")
 
-	#	form = st.form("teh_z")
-	#	form.write("Inside the form")
-	#	form.select_slider("Год рождения", 2000, 2020)
-	#	checkbox_val = form.checkbox("Form checkbox")
-	#	submitted = form.form_submit_button("Submit")
-	#	if submitted:
-	#		st.write("slider", slider_val, "checkbox", checkbox_val)
-	#	st.write("Outside the form")
+#	with st.form("tehz"):
+#		st.write("ЗАЯВКА УЧАСТНИКА")
+#		st.text_input("Номер участника")
+#		st.text_input("Фамилия, имя")
+#		st.selectbox("Год рождения", [
+#			'2000','2001','2002','2003','2004','2005',
+#			'2006','2007','2008','2009','2010',
+#			'2011','2012','2013','2014','2015',
+#			'2016','2017','2018','2019','2020'])
+#		st.text_input("Спортивная организация")
+#		st.selectbox("Разряд", [
+#			'Без разряда','КМС','1','2','3','1юн','2юн','3юн'])
+#		st.multiselect("Дисциплины",[
+#			'100м','200м','300м','400м','800м','1500м','3000м',
+#			'5000м','100 с барьерами','110 с барьерами','400 с барьерами',
+#			'Прыжки в длину','3-ой прыжок с разбега','Толкание ядра',
+#			'Метание копья','Эстафета 4 по 100','Эстафета 4 по 400'])
+#		st.text_input("Заявленный результат")
+#		st.text_input("Тренер(ы)")
+#		st.form_submit_button("Отправить")
+
 
 if selected == "Техническая заявка":
 	if check_password():
 		st.title(f"{selected}")
-		df = pd.read_excel("https://docs.google.com/spreadsheets/d/e/2PACX-1vSdVnIuK_edYAl5m_Nuy6LFjxoYZp6j5-zhyOD9U70baFvD6ex5b9WE9nSMJsP3o_mLVWrSZ-4yTEJp/pub?output=xlsx", engine = 'openpyxl')
+		df = pd.read_excel("https://docs.google.com/spreadsheets/d/e/2PACX-1vSdVnIuK_edYAl5m_Nuy6LFjxoYZp6j5-zhyOD9U70baFvD6ex5b9WE9nSMJsP3o_mLVWrSZ-4yTEJp/pub?output=xlsx", 
+			engine='openpyxl', usecols="B:I")
 		st.dataframe(df)
 
 if selected == "Ввод результатов":
