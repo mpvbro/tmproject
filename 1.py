@@ -1,8 +1,19 @@
 import streamlit as st
 import pandas as pd
+import requests
 from streamlit_option_menu import option_menu
+from streamlit_lottie import st_lottie
 
 st.set_page_config(page_title="123", page_icon=":cyclone:", layout="wide")
+
+# ---- LOTTIE ANIMATION ----
+def load_lottieurl(url):
+	r = requests.get(url)
+	if r.status_code != 200:
+		return None
+	return r.json()
+
+applic_anim = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_rxpugebj.json")
 
 # ---- PASSWORD AUTHENTICATION FOR TECHNICAL APPLICATION ----
 
@@ -48,7 +59,12 @@ with st.sidebar:
 
 # ---- FORM ----
 if selected == "Заявка участника":
-	st.title(f"{selected}")
+	col1,col2,col3=st.columns(3)
+	with col2:
+		st_lottie(applic_anim, height=200, key="animation")
+	st.header("Для заполнения заявки участника перейдите по [ссылке](https://docs.google.com/forms/d/e/1FAIpQLSd4SvXwPipRmk0hSPUPhKgW1V7tfRtUjm3NZZxRFTesq5q38Q/viewform?usp=sf_link)")
+
+
 
 #	with st.form("tehz"):
 #		st.write("ЗАЯВКА УЧАСТНИКА")
