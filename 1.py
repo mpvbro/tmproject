@@ -4,8 +4,8 @@ from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title="123", page_icon=":cyclone:", layout="wide")
 
-sheet_url = "https://docs.google.com/spreadsheets/d/1gfD-SvYpoSDvQKfcsbe6u5o1kKgq3oqcgnkiFKVp14E/edit?resourcekey#gid=1266949594"
-url = sheet_url.replace('/edit?resourcekey#gid=', '/export?format=csv&gid=')
+#sheet_url = "https://docs.google.com/spreadsheets/d/1gfD-SvYpoSDvQKfcsbe6u5o1kKgq3oqcgnkiFKVp14E/edit?resourcekey#gid=1266949594"
+#url = sheet_url.replace('/edit?resourcekey#gid=', '/export?format=csv&gid=')
 
 def check_password():
     """Returns `True` if the user had the correct password."""
@@ -90,7 +90,9 @@ if selected == "Заявка участника":
 if selected == "Техническая заявка":
 	if check_password():
 		st.title(f"{selected}")
-	pd.read_csv(url)
+		df = pd.read_excel("https://docs.google.com/spreadsheets/d/e/2PACX-1vSdVnIuK_edYAl5m_Nuy6LFjxoYZp6j5-zhyOD9U70baFvD6ex5b9WE9nSMJsP3o_mLVWrSZ-4yTEJp/pub?output=xlsx", engine = 'openpyxl')
+		st.dataframe(df)
+
 if selected == "Ввод результатов":
 	st.title(f"You have selected {selected}")
 
