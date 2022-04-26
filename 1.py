@@ -1,7 +1,11 @@
 import streamlit as st
+import pandas as pd
 from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title="123", page_icon=":cyclone:", layout="wide")
+
+sheet_url = "https://docs.google.com/spreadsheets/d/1gfD-SvYpoSDvQKfcsbe6u5o1kKgq3oqcgnkiFKVp14E/edit?resourcekey#gid=1266949594"
+url = sheet_url.replace('/edit?resourcekey#gid=', '/export?format=csv&gid=')
 
 def check_password():
     """Returns `True` if the user had the correct password."""
@@ -25,7 +29,7 @@ def check_password():
         st.text_input(
             "Введите пароль", type="password", on_change=password_entered, key="password"
         )
-        st.error("😕 Password incorrect")
+        st.error("😕 Неверный пароль")
         return False
     else:
         # Password correct.
@@ -70,6 +74,8 @@ if selected == "Заявка участника":
 			'5000м','100 с барьерами','110 с барьерами','400 с барьерами',
 			'Прыжки в длину','3-ой прыжок с разбега','Толкание ядра',
 			'Метание копья','Эстафета 4 по 100','Эстафета 4 по 400'])
+		st.text_input("Заявленный результат")
+		st.text_input("Тренер(ы)")
 		st.form_submit_button("Отправить")
 
 	#	form = st.form("teh_z")
@@ -83,7 +89,8 @@ if selected == "Заявка участника":
 
 if selected == "Техническая заявка":
 	if check_password():
-		st.title(f"You have selected {selected}")
+		st.title(f"{selected}")
+	pd.read_csv(url)
 if selected == "Ввод результатов":
 	st.title(f"You have selected {selected}")
 
