@@ -91,7 +91,7 @@ if selected == "Заявка участника":
 if selected == "Техническая заявка":
 	if check_password():
 		st.title(f"{selected}")
-		df = pd.read_excel("https://docs.google.com/spreadsheets/d/e/2PACX-1vTCMxcnRKh9hpA3PxwjtyAmZWuOE1py_Z0VDU_KYIwbbqJjLGTfpRcj9PNTGsJweIEAttJsXfYbK2vu/pub?output=csv", 
+		df = pd.read_excel("https://docs.google.com/spreadsheets/d/e/2PACX-1vTCMxcnRKh9hpA3PxwjtyAmZWuOE1py_Z0VDU_KYIwbbqJjLGTfpRcj9PNTGsJweIEAttJsXfYbK2vu/pub?output=xlsx", 
 			engine='openpyxl', usecols="B:I")
 		st.dataframe(df)
 
